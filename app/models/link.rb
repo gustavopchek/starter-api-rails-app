@@ -15,11 +15,9 @@ class Link < ApplicationRecord
     self.password = SecureRandom.hex(8)
   end
 
+  # there could be another way to do this here, storing the full url, or even storing the
+  # prefix separately, to manage different domains
   def generate_shortened_url
-    self.shortened_url = url_prefix + SecureRandom.hex(8)
-  end
-
-  def url_prefix
-    base_url ? base_url : 'http://abc.de/'
+    self.shortened_url = SecureRandom.hex(4)
   end
 end
