@@ -4,10 +4,10 @@ RSpec.describe "Links", type: :request do
   describe "GET links" do
     let!(:link_1) { create(:link) }
 
-    before { get "/links" }
+    subject { get "/links" }
 
     it "returns all links" do
-      # subject
+      subject
 
       expect(json_response.count).to eq(2)
     end

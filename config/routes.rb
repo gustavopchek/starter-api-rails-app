@@ -2,10 +2,8 @@ Rails.application.routes.draw do
   # devise_for :users
   
   Rails.application.routes.draw do
-    # resources :notepads do
-    #   resources :notepad_pages
-    # end
+    get "/l/:shortened_url", to: "shortened_links#index"
 
-    resources :links, only: [:index, :create, :delete]
+    resources :links, only: [:index, :create, :destroy]
   end
 end

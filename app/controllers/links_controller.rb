@@ -18,7 +18,7 @@ class LinksController < ApplicationController
       @link.destroy
       head :no_content
     else
-      render json: "not found", status: :not_found
+      render json: { error: "not found" }, status: :not_found
     end
   end
 
