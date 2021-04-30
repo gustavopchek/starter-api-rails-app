@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Rails starter API app
+---
+## Listing links
+  GET "/links"
+  ### responses
+    200: [{ 
+         id: 123,
+         original_url: "http://abc.de/efghi",
+         shortened_url: "http://abc.de/l/abcd"
+       }]
 
-Things you may want to cover:
+## Creating a link
+  POST "/links"
+  ### params
+     - original_url*: string 256 character limit
 
-* Ruby version
+  ### responses
+    200: { 
+           id: 123,
+           original_url: "http://abc.de/efghi",
+           shortened_url: "http://abc.de/l/abcd",
+           password: "password"
+         }
 
-* System dependencies
+    400: bad request
 
-* Configuration
+## Deleting a link
+  POST "/links"
+  ### params
+   - id*: link id
+   - password*: link password
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  ### responses
+    200: true
+    404: not found
+    400: bad request
