@@ -6,17 +6,25 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.create(link_params.merge(base_url: request.base_url))
+    @link = Link.create(create_params.merge(base_url: request.base_url))
 
     render json: @link
   end
 
-  def delete
+  def destroy
+    @link = Link.find_by(id: params[:id])
+
+    if @link&.password == params[:password]
+      @link.destroy
+      head :no_content
+    else
+      render json: "not found", status: :not_found
+    end
   end
 
   private
 
-  def link_params
+  def create_params
     params.permit(:original_url)
   end
 end
